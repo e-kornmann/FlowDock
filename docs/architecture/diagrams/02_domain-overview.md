@@ -19,14 +19,18 @@ RentalLocation[Rental Location]
 
 Driver[Driver]
 
+Participant[Participant]
+
 Incident[Incident]
 
-Payment[Payment]
+Transaction[Transaction]
 
 
 Customer -->|creates| Reservation
 
 Reservation -->|contains| Product
+
+Reservation -->|may have| Participant
 
 Product -->|may require| Asset
 
@@ -38,4 +42,6 @@ Driver -->|operates from| Hub
 
 Driver -->|handles| Incident
 
-Reservation -->|results in| Payment
+Reservation -->|results in| Transaction
+
+Incident -->|may result in| Transaction

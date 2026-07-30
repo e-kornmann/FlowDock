@@ -13,7 +13,7 @@ The system manages:
 - Rental locations
 - Drivers
 - Operational incidents
-- Payments
+- Financial transactions
 
 The goal is to create a platform where customer interactions, operational workflows and fleet management are supported through a clear and maintainable architecture.
 
@@ -23,7 +23,7 @@ The goal is to create a platform where customer interactions, operational workfl
 
 FlowDock consists of multiple applications communicating with shared backend services.
 
-![High Level Architecture](diagrams/01_high-level-architecture.md)
+See [High Level Architecture](diagrams/01_high-level-architecture.md).
 
 ---
 

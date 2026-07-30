@@ -1,4 +1,8 @@
 # ADR-003 — Design the system for multiple hubs and rental locations
+
+**Date:** 2026-07-28  
+**Status:** Accepted
+
 ## Context
 
 FlowDock starts with one central hub in Utrecht.
