@@ -29,7 +29,10 @@ Check whether concepts are consistently defined:
 - Customer
 - Participant
 - Reservation
+- Reservation Line
+- Participant Assignment
 - Product
+- Allocation
 - Asset
 - Hub
 - Rental Location
@@ -42,6 +45,8 @@ Look for:
 - Different meanings for the same term.
 - Missing relationships.
 - Incorrect responsibilities.
+
+Check whether Allocation and ParticipantAssignment follow the same modeling pattern and whether any other relationships should become explicit domain concepts.
 
 ---
 
@@ -94,6 +99,8 @@ Check:
 - Are any diagrams too detailed or making assumptions that are not decided yet?
 
 Identify differences between diagrams and documentation.
+
+Pay special attention to diagrams that introduce architectural concepts not backed by ADRs.
 
 ### 5. Architecture readiness
 

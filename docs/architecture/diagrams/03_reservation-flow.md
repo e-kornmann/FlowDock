@@ -5,18 +5,18 @@ This diagram shows the high-level flow when a customer creates a reservation.
 ```mermaid
 sequenceDiagram
 
-Customer->>ReservationApp: Select rental product and location
+Customer->>CustomerApp: Select rental product and location
 
-ReservationApp->>Backend: Create reservation request
+CustomerApp->>Backend: Create reservation request
 
 Backend->>Database: Check availability
 
-Database-->>Backend: Available products/assets
+Database-->>Backend: Available products
 
 Backend->>Database: Store reservation
 
 Database-->>Backend: Reservation created
 
-Backend-->>ReservationApp: Reservation confirmation
+Backend-->>CustomerApp: Reservation confirmation
 
-ReservationApp-->>Customer: Show confirmation
+CustomerApp-->>Customer: Show confirmation

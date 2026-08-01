@@ -24,6 +24,27 @@ Participants:
 
 ---
 
+## Reservation Line
+
+A single line within a reservation representing one product and its quantity.
+
+---
+
+## Participant Assignment
+
+The assignment of a specific participant to a specific reservation line.
+
+Needed because age restrictions apply per product, so validating them requires knowing which participant uses which reservation line, not just which participants are on the reservation as a whole.
+
+---
+
+## Allocation
+
+The assignment of one or more physical assets to a reservation line.
+Allocations are created by operations and may change before the rental begins.
+
+---
+
 ## Product
 
 Something FlowDock offers for rental or purchase.
@@ -90,3 +111,6 @@ Examples:
 - Rental payment
 - Late fee
 - Pickup charge
+
+---
+

@@ -12,7 +12,32 @@ Business rules represent decisions from the rental business domain and are indep
 
 A reservation has one main customer who is responsible for the booking.
 
-A customer can reserve multiple rental products within one reservation.
+A customer can reserve multiple products within one reservation.
+
+---
+
+## Reservation Lines
+
+A reservation contains one or more reservation lines.
+
+Each reservation line represents:
+
+- One product
+- The requested quantity
+
+Only reservation lines that require physical equipment receive allocations.
+
+---
+
+## Reservation availability
+
+Reservations are created based on product availability.
+
+A reservation does not require physical assets to be allocated immediately.
+
+Physical assets are allocated later by FlowDock operations.
+
+FlowDock may suggest suitable assets, while operations can review or change the allocation before the rental begins.
 
 ---
 
@@ -27,19 +52,30 @@ For each participant we store:
 
 Participants do not manage the reservation unless they are the main customer.
 
+Participants are assigned to reservation lines at booking time, since the customer already knows who is using which product when the reservation is created. This is unlike asset allocation, which is deferred to operations.
+
 ---
 
-# Rental Products
+# Products
 
-FlowDock supports different rental products.
+FlowDock offers different products.
 
 Examples:
+
+### Rental products
 
 - Electric Catamaran
 - SUP without motor
 - SUP with motor
 
-Each rental product can have different rules:
+### Consumable products
+
+- Drinks
+- Food packages
+
+Consumable inventory (stock) tracking is deliberately deferred and out of scope for the first implementation.
+
+Each product can have different business rules, such as:
 
 - Minimum age
 - Maximum rental duration
@@ -50,11 +86,14 @@ Each rental product can have different rules:
 
 # Age restrictions
 
+Age restrictions are validated against the participant assigned to the relevant reservation line, via a participant assignment, not against the reservation as a whole.
+
 Current rules:
 
 ## SUP without motor
 
 Minimum age:
+
 - 10 years
 
 Reason:
@@ -66,6 +105,7 @@ A non-motorized SUP can be affected by wind and water movement.
 ## SUP with motor
 
 Minimum age:
+
 - 7 years
 
 Reason:
@@ -89,25 +129,25 @@ Rentals may be cancelled during:
 
 Cancellation rules:
 
-- Reservation payment is refunded when FlowDock cancels due to unsafe conditions.
+- Reservation payments are refunded when FlowDock cancels due to unsafe conditions.
+
+A weather-triggered cancellation, or a cancellation with an unknown reason, is recorded as a cancellation reason directly on the reservation. It is not modeled as an incident — incidents represent events that happen during an active rental, not reasons a rental never started.
 
 ---
 
 # Reservation changes
 
-Customers cannot directly modify reservations after confirmation.
+Customers cannot directly modify confirmed reservations.
 
-Reservation changes are handled by:
+Reservation changes are handled by the operations team.
 
-- Headquarters / operations team
-
-Drivers cannot modify reservations.
+Drivers cannot modify reservation data.
 
 ---
 
 # Asset management
 
-Physical assets must have a current status.
+Physical assets must always have a current status.
 
 Examples:
 
@@ -117,6 +157,8 @@ Examples:
 - In use
 - Maintenance
 - Unavailable
+
+Assets are individually tracked throughout their lifecycle.
 
 ---
 
@@ -131,7 +173,7 @@ Examples:
 - Handling incidents
 - Adding operational charges
 
-Drivers cannot change core reservation data.
+Drivers cannot modify reservation data.
 
 ---
 
@@ -143,7 +185,7 @@ Examples:
 
 - Late return
 - Customer pickup
-- Additional drinks ordered at location
+- Additional drinks ordered at a rental location
 - Damage handling
 
 ---
@@ -153,11 +195,15 @@ Examples:
 Current rental duration:
 
 Minimum:
+
 - 1.5 hours
 
 Maximum:
+
 - 4 hours
 
 Reason:
 
-Battery capacity and operational planning.
+Operational planning.
+
+Some products may have additional duration limits due to technical constraints, such as battery capacity.

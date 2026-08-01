@@ -9,7 +9,13 @@ Customer[Customer]
 
 Reservation[Reservation]
 
+ReservationLine[Reservation Line]
+
 Product[Product]
+
+Allocation[Allocation]
+
+ParticipantAssignment[Participant Assignment]
 
 Asset[Physical Asset]
 
@@ -28,17 +34,25 @@ Transaction[Transaction]
 
 Customer -->|creates| Reservation
 
-Reservation -->|contains| Product
+Reservation -->|contains| ReservationLine
 
 Reservation -->|may have| Participant
 
-Product -->|may require| Asset
+ReservationLine -->|references| Product
+
+ReservationLine -->|may receive| Allocation
+
+Allocation -->|assigns| Asset
+
+ReservationLine -->|may receive| ParticipantAssignment
+
+ParticipantAssignment -->|assigns| Participant
 
 Hub -->|owns| Asset
 
 Hub -->|supplies assets to| RentalLocation
 
-Driver -->|operates from| Hub
+RentalLocation -->|assigned during shifts| Driver
 
 Driver -->|handles| Incident
 

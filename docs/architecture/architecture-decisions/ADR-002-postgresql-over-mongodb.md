@@ -19,7 +19,7 @@ The domain contains many related entities, including:
 - Rental locations
 - Drivers
 - Incidents
-- Payments
+- Transactions
 
 The system needs to maintain relationships between assets, hubs, rental locations and reservations.
 
@@ -35,7 +35,7 @@ For example:
 Many business operations require strong consistency. For example:
 
 - A reservation should not be created if no assets are available.
-- Payments and reservation updates should remain synchronized.
+- Transactions and reservation updates should remain synchronized.
 - Operational incidents may result in financial transactions.
 - Assets may move between hubs and rental locations, requiring reliable tracking of state changes over time.
 
