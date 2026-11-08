@@ -1,44 +1,41 @@
+---
+name: architecture-review
+description: Senior-engineer review of the FlowDock foundation. Finds contradictions, missing concepts and unclear decisions across the domain docs, ADRs and diagrams, and judges implementation readiness. Changes nothing. Run by hand with /architecture-review.
+disable-model-invocation: true
+---
+
 # FlowDock Architecture Review
 
-You are acting as a senior software engineer reviewing the current project foundation before implementation starts.
+You are acting as a senior software engineer reviewing the current project foundation.
 
-Please review the consistency between:
+Commit a clean checkpoint first, or tell Elton the working tree is dirty, so any follow-up changes are reviewable.
+
+Review the consistency between:
 
 - `README.md`
 - `CLAUDE.md`
+- `docs/project/vision.md`
 - `docs/domain/business-rules.md`
 - `docs/domain/domain-language.md`
 - `docs/domain/domain-model.md`
 - `docs/architecture/overview.md`
 - `docs/architecture/principles.md`
-- `docs/architecture/diagrams/`
-- `docs/architecture/architecture-decisions/ADR-001` through `ADR-007`
+- every file in `docs/architecture/diagrams/`, including `workflows/`
+- every ADR in `docs/architecture/architecture-decisions/`
 
 ## Goal
 
 Find contradictions, missing concepts, unclear decisions, or places where the documentation does not represent the same domain understanding.
 
-Do not write code yet.
+Do not write code.
+
+Ask "are the decisions we made consistent?", not "what entities are missing?". The second question leads to endless modelling.
 
 ## Review areas
 
 ### 1. Domain consistency
 
-Check whether concepts are consistently defined:
-
-- Customer
-- Participant
-- Reservation
-- Reservation Line
-- Participant Assignment
-- Product
-- Allocation
-- Asset
-- Hub
-- Rental Location
-- Driver
-- Incident
-- Transaction
+Check that every term defined in `docs/domain/domain-language.md` has the same meaning everywhere.
 
 Look for:
 
@@ -46,7 +43,7 @@ Look for:
 - Missing relationships.
 - Incorrect responsibilities.
 
-Check whether Allocation and ParticipantAssignment follow the same modeling pattern and whether any other relationships should become explicit domain concepts.
+Check whether the assignment concepts (Allocation, Participant Assignment) follow the same modelling pattern, and whether any other relationship has business meaning and should become an explicit concept.
 
 ---
 
@@ -69,8 +66,6 @@ Identify rules that are unclear or impossible to implement.
 
 ### 3. ADR consistency
 
-Review ADR-001 through ADR-007.
-
 For each ADR:
 
 - Does the decision match the current domain?
@@ -82,29 +77,20 @@ For each ADR:
 
 ### 4. Diagram consistency
 
-Review all architecture diagrams:
+For each diagram:
 
-- high-level-architecture.md
-- domain-overview.md
-- reservation-flow.md
-- domain-layers.md
-- deployment-overview.md
-- request-flow.md
-
-Check:
-
-- Do diagrams represent the same architecture described in the documentation?
+- Does it represent the same architecture described in the documentation?
 - Are relationships between domain concepts correct?
 - Are any concepts missing?
-- Are any diagrams too detailed or making assumptions that are not decided yet?
+- Is it too detailed, or making assumptions that are not decided yet?
 
-Identify differences between diagrams and documentation.
+Pay special attention to diagrams that introduce architectural concepts not backed by ADRs. Those must be marked Exploratory.
 
-Pay special attention to diagrams that introduce architectural concepts not backed by ADRs.
+---
 
 ### 5. Architecture readiness
 
-Evaluate if FlowDock is ready to start implementation.
+Evaluate whether FlowDock is ready for the next phase in `docs/project/roadmap.md`.
 
 Check:
 
@@ -116,8 +102,6 @@ Check:
 ---
 
 ## Output format
-
-Please provide:
 
 ## Summary
 
@@ -134,7 +118,7 @@ For each issue:
 
 ## Recommended Changes
 
-List only changes that are necessary before implementation.
+List only changes that are necessary before the next phase.
 
 ## Questions To Decide
 

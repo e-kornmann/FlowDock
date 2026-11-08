@@ -3,3 +3,5 @@ node_modules
 tmp
 
 .env
+*.local
+.claude/settings.local.json

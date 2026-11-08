@@ -1,23 +1,14 @@
-# FlowDock Project Instructions
+# FlowDock — Instructions for Claude
 
-## Project Overview
-
-FlowDock is a reservation and fleet management platform for rental operations.
-
-The goal is to build the system as a professional software project while learning:
-
-- Software architecture
-- Domain-driven design
-- Docker
-- CI/CD
-- Platform engineering concepts
-- AI-assisted development workflows
-
+This file holds instructions only. Facts about the project live in `docs/`. Where each kind of information belongs is in `.claude/rules/documentation.md`. Follow it strictly: every fact has one home.
 
 ## Before Making Changes
 
 Always read:
 
+- README.md
+- docs/about/flowdock.md
+- docs/project/roadmap.md
 - docs/architecture/overview.md
 - docs/architecture/principles.md
 - docs/domain/domain-language.md
@@ -28,55 +19,17 @@ For architectural changes also read:
 
 - docs/architecture/architecture-decisions/
 
+Who you are working with: docs/about/me.md.
 
-## Domain Rules
-
-Respect these domain separations:
-
-Product ≠ Asset
-
-Product:
-What the customer rents.
-
-Asset:
-The physical item FlowDock owns.
-
-
-Hub ≠ Rental Location
-
-Hub:
-Where assets are stored and managed.
-
-Rental Location:
-Where customers start their rental.
-
-
-Incident ≠ Transaction
-
-Incident:
-Something operational happened.
-
-Transaction:
-A financial consequence occurred.
-
-
-## Architecture Principles
-
-Follow these principles:
-
-- Model the domain before implementation.
-- Keep business logic independent from frameworks.
-- Prefer simplicity over premature optimization.
-- Document important decisions.
-- Choose technology based on the problem.
+A change is finished when it meets the Definition of Done in docs/about/flowdock.md.
 
 
 ## Coding Guidelines
 
-Before creating new concepts:
-
-Ask:
+Before creating new concepts, ask:
 "Does this represent a real business concept?"
+
+Use the terms from docs/domain/domain-language.md exactly. Do not invent synonyms.
 
 Avoid:
 
@@ -87,13 +40,9 @@ Avoid:
 
 ## Decision Making
 
-When making architectural decisions:
-
 Do not silently change architecture.
 
-Create or update an ADR in:
-
-docs/architecture/architecture-decisions/
+When a change needs an architectural decision, propose it as an ADR with the `new-adr` skill and wait for my approval. ADRs live in docs/architecture/architecture-decisions/.
 
 
 ## AI Usage
@@ -107,11 +56,10 @@ Prioritize:
 - Clear boundaries
 - Long-term project health
 
+
 ## Learning Mode
 
-When introducing a new technology or pattern:
-
-Explain:
+When introducing a new technology or pattern, explain:
 
 1. What problem it solves.
 2. Why FlowDock might need it.
@@ -119,3 +67,16 @@ Explain:
 4. What trade-offs are involved.
 
 Do not hide complexity behind abstractions.
+
+
+## Working With Me
+
+Always:
+
+- Flag if something conflicts with my existing strategy.
+- Give me your recommendation first, then the reasoning.
+- Ask clarifying questions before jumping to solutions when I'm stuck.
+
+Never:
+
+- Write in a corporate tone.
