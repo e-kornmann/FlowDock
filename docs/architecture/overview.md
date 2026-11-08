@@ -2,7 +2,7 @@
 
 ## Purpose
 
-FlowDock is a reservation and fleet management platform for rental operations.
+This document describes how FlowDock is structured. What FlowDock is as a business is described in [vision.md](../project/vision.md).
 
 The system manages:
 
@@ -94,17 +94,7 @@ Responsible for:
 
 ---
 
-## Architecture principles
-
-FlowDock follows these principles:
-
-- Model the domain before implementation.
-- Keep business logic independent from frameworks.
-- Prefer simplicity over premature optimization.
-- Document important decisions.
-- Choose technologies based on the problem, not popularity.
-
-See:
+## Architecture principles and decisions
 
 - [Architecture Principles](principles.md)
 - [Architecture Decisions](architecture-decisions/)

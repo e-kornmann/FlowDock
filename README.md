@@ -1,51 +1,49 @@
 # FlowDock
 
-FlowDock is a reservation and fleet management platform for rental operations.
+FlowDock is a reservation and fleet management platform for rental operations, built as a learning project and run like a professional software product.
 
-The project is designed as a professional greenfield software project to explore:
-
-- Software architecture
-- Domain-driven design
-- AI-assisted development workflows
-- Docker and CI/CD
-- Platform engineering concepts
-
----
-
-## Project Goal
-
-FlowDock simulates the development of a real-world rental platform.
-
-The system manages:
-
-- Customer reservations
-- Rental products
-- Physical assets
-- Hubs
-- Rental locations
-- Drivers
-- Operational incidents
-- Financial transactions
-
-The focus is not only building features, but creating a maintainable and well-structured software system.
-
----
-
-## Current Status
-
-🚧 Early development phase
-
-Currently focusing on:
-
-- Domain modelling
-- Architecture decisions
-- Business rules
-- Project structure
-
-Implementation has not started yet.
+- **Why this project exists:** [docs/about/flowdock.md](docs/about/flowdock.md)
+- **Current status and next steps:** [docs/project/roadmap.md](docs/project/roadmap.md)
 
 ---
 
 ## Documentation
 
-Project documentation can be found in:
+**About**
+
+- [Why FlowDock exists](docs/about/flowdock.md): learning goals, ground rules, Definition of Done
+- [About me](docs/about/me.md)
+
+**Project**
+
+- [Vision](docs/project/vision.md): the business FlowDock simulates
+- [Roadmap](docs/project/roadmap.md): phases and current goals
+- [Learning journal](docs/project/learning-journal.md)
+
+**Domain**
+
+- [Domain language](docs/domain/domain-language.md)
+- [Domain model](docs/domain/domain-model.md)
+- [Business rules](docs/domain/business-rules.md)
+
+**Architecture**
+
+- [Overview](docs/architecture/overview.md)
+- [Principles](docs/architecture/principles.md)
+- [Architecture decisions (ADRs)](docs/architecture/architecture-decisions/)
+- [Diagrams](docs/architecture/diagrams/)
+
+---
+
+## AI-Assisted Development
+
+AI tools such as Claude Code are used throughout the development process to support:
+
+- Architecture discussions and design reviews.
+- Domain modelling and documentation.
+- Exploring implementation approaches.
+- Code generation and refactoring.
+
+All architectural decisions, implementation choices and final changes are reviewed and approved by me.
+
+The Claude Code setup ([CLAUDE.md](CLAUDE.md) and [.claude/](.claude/)) is versioned with the project, so it grows with it.
