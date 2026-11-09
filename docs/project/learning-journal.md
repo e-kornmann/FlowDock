@@ -90,15 +90,6 @@ The choice should be based on the problem, not because one technology is more po
 - The system will start simple and avoid premature complexity.
 
 ---
-
-## Open Questions
-
-- How should incidents and financial transactions be modelled?
-- How should asset allocation work?
-- When should services be separated?
-- How will Docker, CI/CD and Kubernetes fit into the future architecture?
-
----
 ---
 
 
@@ -167,9 +158,3 @@ Also learned not to write down undecided choices as if they were facts. An early
 - Every fact has one home. Other documents link to it.
 - Generic third-party skills are installed at user level, only when needed.
 - Claude is not listed as a co-author.
-
----
-
-## Open Questions
-
-Open domain questions for this week are tracked in the [roadmap](roadmap.md#this-week-915-november).

@@ -59,7 +59,7 @@ Pace assumption: a few sessions per week alongside a full-time job. Adjust the d
 4. **Decide the remaining domain questions**, or record them as deliberately deferred:
    - Does a Driver have a home Hub? The [driver workflow](../architecture/diagrams/workflows/driver-assignment.md) starts at the Hub, while the domain model only says drivers are assigned to a rental location during shifts.
    - Do Allocations need their own properties yet (status, time, assigned by)?
-5. **Catch up the [learning journal](learning-journal.md).** Add an entry for the 29 July to 2 August work (Reservation Line, Allocation, Participant Assignment, the review workflow) and one for this week. Close the open questions that ADR-005 to ADR-008 have since answered.
+5. **Catch up the [learning journal](learning-journal.md).** Add an entry for the 29 July to 2 August work (Reservation Line, Allocation, Participant Assignment, the review workflow) and one for this week.
 6. **Run `/architecture-review`** as the implementation-readiness check. Decide every question it raises. Phase 0 is closed when nothing blocking is left.
 7. **Prepare week 2.** List the Foundation decisions, and for each one answer: why do we need it, what are the alternatives, and what do they cost? Don't decide yet.
 
@@ -76,7 +76,7 @@ Pace assumption: a few sessions per week alongside a full-time job. Adjust the d
 
 ## Parked
 
-Questions deliberately left for later. When one is picked up, it moves into a week above, and the decision goes to its home (business rules, domain model or an ADR).
+Open questions live here and in this week's goal, nowhere else. Parked questions are deliberately left for later. When one is picked up, it moves into a week above, and the decision goes to its home (business rules, domain model or an ADR).
 
 An item comes back only when its trigger happens, never just because it is on this list.
 
@@ -87,4 +87,5 @@ An item comes back only when its trigger happens, never just because it is on th
 | Alcohol and age | Consumables such as Aperol have no age rule, but Dutch law sets 18 as the minimum age. Do consumable lines need participant assignments too? | New | Consumables can be booked with a reservation in code (Phase 2) |
 | Consumable stock | Tracking stock for drinks and food. | Deferred, see [ADR-006](../architecture/architecture-decisions/ADR-006-reserve-products-not-assets.md) | Consumables run out at a rental location |
 | Asset transport | Transport between hub and rental location as its own concept. | Deferred, see [domain-model.md](../domain/domain-model.md#hub) | We need to track who transported which asset and when |
+| Service separation | Should the backend be split into separate services beyond the frontend and backend split of [ADR-005](../architecture/architecture-decisions/ADR-005-separate-frontend-and-backend-services.md)? | New | Part of the backend needs to scale or deploy on its own |
 | Domain layers | Customer, operational and financial layers as architectural boundaries. | Exploratory, see [04_domain-layers.md](../architecture/diagrams/04_domain-layers.md) | Implementation shows where the real boundaries are |
