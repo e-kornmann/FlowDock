@@ -9,7 +9,7 @@ Every piece of information has exactly one home. Other places link to it and nev
 | Who Elton is: background, direction, how he learns | `docs/about/me.md` |
 | Why FlowDock exists, learning goals, ground rules, Definition of Done | `docs/about/flowdock.md` |
 | The business FlowDock simulates: purpose, future direction | `docs/project/vision.md` |
-| Phases, goals for the coming weeks, this week's goal | `docs/project/roadmap.md` |
+| Phases, goals for the coming weeks, this week's goal, parked questions | `docs/project/roadmap.md` |
 | What was learned, by date | `docs/project/learning-journal.md` |
 | Meaning of domain terms | `docs/domain/domain-language.md` |
 | Domain concepts and their relationships | `docs/domain/domain-model.md` |

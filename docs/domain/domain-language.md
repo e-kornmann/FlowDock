@@ -8,19 +8,9 @@ A person who creates a reservation and is responsible for the booking.
 
 ## Participant
 
-A person who uses the rental product but is not necessarily the person who made the reservation.
+A person who uses the rental product but is not necessarily the person who made the reservation. A customer who joins the rental is also a participant.
 
-Example:
-
-A customer rents a catamaran for 4 people.
-
-Customer:
-- Elton
-
-Participants:
-- Person A
-- Person B
-- Person C
+See [domain-model.md](domain-model.md#participant) for an example.
 
 ---
 
@@ -40,7 +30,7 @@ Needed because age restrictions apply per product, so validating them requires k
 
 ## Allocation
 
-The assignment of one or more physical assets to a reservation line.
+The assignment of one physical asset to a reservation line.
 Allocations are created by operations and may change before the rental begins.
 
 ---

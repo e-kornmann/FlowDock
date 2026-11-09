@@ -43,7 +43,7 @@ Reservations will be made for products rather than specific physical assets.
 
 Physical assets are allocated later during the operational process through Allocations.
 
-An Allocation represents the assignment of one or more physical assets to a reservation line.
+An Allocation represents the assignment of one physical asset to a reservation line. A reservation line receives one allocation per asset.
 
 Only products that require physical equipment receive allocations.
 

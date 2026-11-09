@@ -71,3 +71,20 @@ Pace assumption: a few sessions per week alongside a full-time job. Adjust the d
 - [ ] Learning journal up to date
 - [ ] `/architecture-review` has no blocking findings
 - [ ] Week 2 decision list written
+
+---
+
+## Parked
+
+Questions deliberately left for later. When one is picked up, it moves into a week above, and the decision goes to its home (business rules, domain model or an ADR).
+
+An item comes back only when its trigger happens, never just because it is on this list.
+
+| Topic | Question | Where it stands | Comes back when |
+| --- | --- | --- | --- |
+| Shortage | What happens when a reservation line cannot be fully allocated before the [allocation deadline](../domain/business-rules.md#allocation-deadline)? Upgrade, contact the customer, or cancel with a cancellation reason? | New | Phase 3 (allocation) starts, or a line can't be fully allocated in practice |
+| Spare equipment at rental locations | Should a rental location keep spare assets or parts (for example a spare battery or a spare SUP) so a breakdown doesn't need a trip to the hub? | New | Incidents show that breakdowns often need a trip to the hub |
+| Alcohol and age | Consumables such as Aperol have no age rule, but Dutch law sets 18 as the minimum age. Do consumable lines need participant assignments too? | New | Consumables can be booked with a reservation in code (Phase 2) |
+| Consumable stock | Tracking stock for drinks and food. | Deferred, see [business-rules.md](../domain/business-rules.md#consumable-products) | Consumables run out at a rental location |
+| Asset transport | Transport between hub and rental location as its own concept. | Deferred, see [domain-model.md](../domain/domain-model.md#hub) | We need to track who transported which asset and when |
+| Domain layers | Customer, operational and financial layers as architectural boundaries. | Exploratory, see [04_domain-layers.md](../architecture/diagrams/04_domain-layers.md) | Implementation shows where the real boundaries are |

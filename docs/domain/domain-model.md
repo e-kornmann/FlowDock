@@ -16,6 +16,8 @@ A customer is the person responsible for a reservation.
 
 A customer can create multiple reservations.
 
+A customer who joins the rental is also a participant.
+
 ---
 
 ## Participant
@@ -24,12 +26,13 @@ A participant is a person who uses a rental product but is not necessarily respo
 
 Example:
 
-A customer reserves a catamaran for four people.
+A customer reserves two catamarans for four people and joins the rental.
 
 Customer:
 - Elton
 
 Participants:
+- Elton
 - Person A
 - Person B
 - Person C
@@ -82,15 +85,44 @@ Participants are not linked to reservation lines directly. A participant assignm
 
 Participant assignments are made at booking time, since the customer knows who is using which product when the reservation is created.
 
+Example, Reservation #1042 (Saturday 14:00–17:00, Loosdrechtse Plassen, customer Elton):
+
+| Reservation line | Participant assignments |
+| --- | --- |
+| 1 × Electric Catamaran | Elton (38), Sanne (36) |
+| 2 × SUP with motor | Daan (9), Mila (7) |
+| 4 × Aperol | none |
+
+If Elton changes the SUP line to SUP without motor (minimum age 10), FlowDock can tell exactly who is affected: Daan and Mila. Without participant assignments, FlowDock would only know that the reservation includes a 7-year-old, not which product she uses.
+
 ---
 
 ## Allocation
 
-An allocation represents the assignment of one or more physical assets to a reservation line.
+An allocation represents the assignment of one physical asset to a reservation line.
 
 Assets are not linked to reservation lines directly. An allocation is required because the customer reserves a product, not a specific physical asset — the specific asset is determined separately, during operational planning.
 
-Only reservation lines that require physical equipment receive allocations. Allocations are created by operations and may change before the rental begins.
+Only reservation lines that require physical equipment receive allocations. A reservation line receives one allocation per asset. Allocations are created by operations and may change before the rental begins.
+
+Example, Reservation #1042 again. Operations plans the allocations from Utrecht Hub:
+
+| Reservation line | Allocations |
+| --- | --- |
+| 1 × Electric Catamaran | Catamaran #003 |
+| 2 × SUP with motor | SUP #015, SUP #016 |
+| 4 × Aperol | none (consumable) |
+
+The next morning SUP #015 has a broken motor and goes into maintenance. Operations replaces that allocation with SUP #021. The reservation itself does not change: Elton booked 2 × SUP with motor and still gets exactly that.
+
+### Participant assignment vs allocation
+
+| | Participant Assignment | Allocation |
+| --- | --- | --- |
+| Connects a reservation line to | Participant | Asset |
+| Decided by | Customer | Operations |
+| When | At booking | After the booking cutoff, before the allocation deadline |
+| Applies to | Lines where rules per person apply | Lines that require physical equipment |
 
 ---
 
