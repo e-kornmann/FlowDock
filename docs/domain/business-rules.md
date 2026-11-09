@@ -10,7 +10,7 @@ Business rules represent decisions from the rental business domain and are indep
 
 ## Reservation ownership
 
-A reservation has one main customer who is responsible for the booking.
+A reservation has one main customer who is responsible for the reservation.
 
 A customer can reserve multiple products within one reservation.
 
@@ -18,12 +18,7 @@ A customer can reserve multiple products within one reservation.
 
 ## Reservation Lines
 
-A reservation contains one or more reservation lines.
-
-Each reservation line represents:
-
-- One product
-- The requested quantity
+What a reservation line holds: [domain-model.md](domain-model.md#reservation-line).
 
 Only reservation lines that require physical equipment receive allocations.
 
@@ -39,7 +34,7 @@ Physical assets are allocated later by FlowDock operations.
 
 FlowDock may suggest suitable assets, while operations can review or change the allocation before the rental begins.
 
-Each allocation assigns exactly one asset. A reservation line that requires physical equipment needs exactly as many allocations as its quantity: 2 × SUP with motor means two allocations, one per SUP.
+A reservation line that requires physical equipment needs exactly as many [allocations](domain-language.md#allocation) as its quantity, one per asset: 2 × SUP with motor means two allocations, one per SUP.
 
 ---
 
@@ -61,7 +56,7 @@ Every reservation line that requires physical equipment must be fully allocated 
 
 Example: a rental on Saturday must be fully allocated by Friday 12:00.
 
-What happens when a line cannot be fully allocated in time is not decided yet.
+What happens when a line cannot be fully allocated in time is not decided yet, see [roadmap.md](../project/roadmap.md#parked).
 
 ### Late reservations
 
@@ -75,16 +70,9 @@ Example: for a rental on Saturday, a call on Thursday 15:00 can still be booked 
 
 ## Participants
 
-A reservation can contain multiple participants.
-
-For each participant we store:
-
-- Name
-- Age
-
 Participants do not manage the reservation unless they are the main customer.
 
-The customer is registered as a participant when they join the rental. When the customer stays ashore, one of the participants provides their contact details.
+When the customer stays ashore and so is not a [participant](domain-model.md#customer), one of the participants provides their contact details.
 
 Participants are assigned to reservation lines at booking time, since the customer already knows who is using which product when the reservation is created. This is unlike asset allocation, which is deferred to operations.
 
@@ -107,11 +95,12 @@ Examples:
 - Drinks
 - Food packages
 
-Consumable inventory (stock) tracking is deliberately deferred and out of scope for the first implementation.
+Stock tracking for consumable products is deferred, see [ADR-006](../architecture/architecture-decisions/ADR-006-reserve-products-not-assets.md).
 
 Each product can have different business rules, such as:
 
 - Minimum age
+- Capacity
 - Maximum rental duration
 - Weather restrictions
 - Availability requirements
@@ -177,7 +166,7 @@ Cancellation rules:
 
 - Reservation payments are refunded when FlowDock cancels due to unsafe conditions.
 
-A weather-triggered cancellation, or a cancellation with an unknown reason, is recorded as a cancellation reason directly on the reservation. It is not modeled as an incident — incidents represent events that happen during an active rental, not reasons a rental never started.
+How a cancellation is recorded: [domain-model.md](domain-model.md#reservation).
 
 ---
 
@@ -185,9 +174,7 @@ A weather-triggered cancellation, or a cancellation with an unknown reason, is r
 
 Customers cannot directly modify confirmed reservations.
 
-Reservation changes are handled by the operations team.
-
-Drivers cannot modify reservation data.
+Reservation changes are handled by operations.
 
 ---
 
@@ -198,7 +185,7 @@ Physical assets must always have a current status.
 Examples:
 
 - Available
-- Assigned
+- Allocated
 - At rental location
 - In use
 - Maintenance
@@ -215,8 +202,9 @@ Drivers are responsible for operational activities.
 Examples:
 
 - Transporting assets
-- Managing rental locations
+- Preparing and managing rental locations
 - Handling incidents
+- Supporting customers
 - Adding operational charges
 
 Drivers cannot modify reservation data.

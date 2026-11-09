@@ -20,3 +20,4 @@ Database-->>Backend: Reservation created
 Backend-->>CustomerApp: Reservation confirmation
 
 CustomerApp-->>Customer: Show confirmation
+```

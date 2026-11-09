@@ -24,7 +24,7 @@ This track runs alongside the phases: after each phase, the Claude setup improve
 
 | With phase | Claude setup |
 | --- | --- |
-| 0 | `CLAUDE.md`, documentation and secrets rules, skills: `architecture-review`, `update-docs`, `new-adr` |
+| 0 | `CLAUDE.md`, `settings.json`, documentation, comments, commits and secrets rules, skills: `architecture-review`, `update-docs`, `new-adr` |
 | 1 | Path-scoped rules for backend, frontend and database code. Install the `frontend-design` skill (Anthropic, user level) when the operations app is scaffolded |
 | 2 | A feature workflow skill: read the docs, ask, design, implement, test, review, update docs. Try the superpowers `brainstorming` skill (user level) for designing features before code |
 | 3 | A reviewer agent that critiques code and architecture but writes no code |
@@ -65,8 +65,8 @@ Pace assumption: a few sessions per week alongside a full-time job. Adjust the d
 
 **Done when:**
 
-- [ ] Restructure committed
-- [ ] `/update-docs` reports no duplicates or broken links
+- [x] Restructure committed
+- [x] `/update-docs` reports no duplicates or broken links
 - [ ] Domain questions decided or deferred in the docs
 - [ ] Learning journal up to date
 - [ ] `/architecture-review` has no blocking findings
@@ -85,6 +85,6 @@ An item comes back only when its trigger happens, never just because it is on th
 | Shortage | What happens when a reservation line cannot be fully allocated before the [allocation deadline](../domain/business-rules.md#allocation-deadline)? Upgrade, contact the customer, or cancel with a cancellation reason? | New | Phase 3 (allocation) starts, or a line can't be fully allocated in practice |
 | Spare equipment at rental locations | Should a rental location keep spare assets or parts (for example a spare battery or a spare SUP) so a breakdown doesn't need a trip to the hub? | New | Incidents show that breakdowns often need a trip to the hub |
 | Alcohol and age | Consumables such as Aperol have no age rule, but Dutch law sets 18 as the minimum age. Do consumable lines need participant assignments too? | New | Consumables can be booked with a reservation in code (Phase 2) |
-| Consumable stock | Tracking stock for drinks and food. | Deferred, see [business-rules.md](../domain/business-rules.md#consumable-products) | Consumables run out at a rental location |
+| Consumable stock | Tracking stock for drinks and food. | Deferred, see [ADR-006](../architecture/architecture-decisions/ADR-006-reserve-products-not-assets.md) | Consumables run out at a rental location |
 | Asset transport | Transport between hub and rental location as its own concept. | Deferred, see [domain-model.md](../domain/domain-model.md#hub) | We need to track who transported which asset and when |
 | Domain layers | Customer, operational and financial layers as architectural boundaries. | Exploratory, see [04_domain-layers.md](../architecture/diagrams/04_domain-layers.md) | Implementation shows where the real boundaries are |

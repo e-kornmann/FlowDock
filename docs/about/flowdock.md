@@ -38,7 +38,7 @@ When each of these comes in is in the [roadmap](../project/roadmap.md).
 
 1. **We build a company, not a tutorial.** Not "today we build a login", but "who actually needs an account?" The business question comes first, the feature follows.
 2. **Every new technology must solve a problem FlowDock has.** Docker comes in when starting the project by hand becomes a problem, not because Docker is popular.
-3. **Design for learning, not for millions of users.** Start small: one hub, four rental locations, one country. Design so growth is possible, build only what is needed now.
+3. **Design for learning, not for millions of users.** Start as small as the [business starts](../project/vision.md#starting-point). Design so growth is possible, build only what is needed now.
 4. **Claude grows with the project.** After each phase we improve the AI workflow too, not only the application.
 5. **I make the decisions.** Claude advises, reviews and implements. Architecture, domain and quality choices are mine.
 

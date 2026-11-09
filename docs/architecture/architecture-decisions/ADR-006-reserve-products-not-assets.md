@@ -11,7 +11,7 @@ FlowDock manages rental products and physical assets.
 
 A product represents something a customer can reserve, for example:
 
-* Electric catamaran
+* Electric Catamaran
 * SUP without motor
 * SUP with motor
 * Drinks

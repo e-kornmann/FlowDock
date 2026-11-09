@@ -34,7 +34,7 @@ For example:
 
 Many business operations require strong consistency. For example:
 
-- A reservation should not be created if no assets are available.
+- A reservation should not be created when the product is not available at that rental location and time.
 - Transactions and reservation updates should remain synchronized.
 - Operational incidents may result in financial transactions.
 - Assets may move between hubs and rental locations, requiring reliable tracking of state changes over time.

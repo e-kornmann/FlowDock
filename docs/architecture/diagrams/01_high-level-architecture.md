@@ -5,14 +5,14 @@ flowchart TB
 
 Customer[Customer]
 
-Employee[Employee]
+Operations[Operations]
 
 Driver[Driver]
 
 
 Customer --> CustomerApp[Future Next.js Reservation App]
 
-Employee --> OperationsApp[React Operations App]
+Operations --> OperationsApp[React Operations App]
 
 Driver --> OperationsApp
 
@@ -23,3 +23,4 @@ OperationsApp --> Backend
 
 
 Backend --> Database[(PostgreSQL Database)]
+```

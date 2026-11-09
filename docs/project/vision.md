@@ -15,6 +15,12 @@ The goal is to create a system where reservations, logistics and asset managemen
 
 ---
 
+## Starting point
+
+FlowDock starts with one hub in Utrecht and four rental locations, among them Loosdrecht, all in the Netherlands.
+
+---
+
 ## Future direction
 
 FlowDock should support:

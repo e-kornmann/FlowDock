@@ -11,7 +11,7 @@ FlowDock consists of multiple applications that interact with the same business 
 
 Examples:
 
-- Internal operations platform for employees.
+- Internal platform for operations.
 - Driver workflows.
 - Future customer-facing reservation application.
 

@@ -1,6 +1,6 @@
 # FlowDock Domain Model
 
-This document describes the main business concepts within FlowDock and their relationships.
+This document describes the main business concepts within FlowDock and their relationships. What each term means is defined in [domain-language.md](domain-language.md). The rules that apply to the concepts are in [business-rules.md](business-rules.md).
 
 The model focuses on business concepts rather than database implementation details.
 
@@ -12,7 +12,7 @@ The domain model evolves as new business decisions are made.
 
 ## Customer
 
-A customer is the person responsible for a reservation.
+Definition: [Customer](domain-language.md#customer).
 
 A customer can create multiple reservations.
 
@@ -22,7 +22,12 @@ A customer who joins the rental is also a participant.
 
 ## Participant
 
-A participant is a person who uses a rental product but is not necessarily responsible for the reservation.
+Definition: [Participant](domain-language.md#participant).
+
+For each participant we store:
+
+- Name
+- Age
 
 Example:
 
@@ -41,7 +46,7 @@ Participants:
 
 ## Reservation
 
-A reservation represents a customer's request to rent one or more products for a specific period and rental location.
+Definition: [Reservation](domain-language.md#reservation).
 
 A reservation:
 
@@ -59,7 +64,7 @@ A reservation's cancellation reason is not modeled as an incident. Incidents rep
 
 ## Reservation Line
 
-A reservation line represents a single product within a reservation.
+Definition: [Reservation Line](domain-language.md#reservation-line).
 
 Examples:
 
@@ -79,11 +84,11 @@ A reservation line:
 
 ## Participant Assignment
 
-A participant assignment represents a specific participant using a specific reservation line.
+Definition: [Participant Assignment](domain-language.md#participant-assignment).
 
-Participants are not linked to reservation lines directly. A participant assignment is required because product-specific rules, such as minimum age restrictions, must be validated against the reservation line a participant is actually using, not the reservation as a whole.
+Participants are not linked to reservation lines directly. Product-specific rules, such as [age restrictions](business-rules.md#age-restrictions) and [capacity](business-rules.md#capacity), are validated through participant assignments. Why: [ADR-008](../architecture/architecture-decisions/ADR-008-participant-assignment.md).
 
-Participant assignments are made at booking time, since the customer knows who is using which product when the reservation is created.
+When participant assignments are made: [business-rules.md](business-rules.md#participants).
 
 Example, Reservation #1042 (Saturday 14:00–17:00, Loosdrechtse Plassen, customer Elton):
 
@@ -99,11 +104,11 @@ If Elton changes the SUP line to SUP without motor (minimum age 10), FlowDock ca
 
 ## Allocation
 
-An allocation represents the assignment of one physical asset to a reservation line.
+Definition: [Allocation](domain-language.md#allocation).
 
-Assets are not linked to reservation lines directly. An allocation is required because the customer reserves a product, not a specific physical asset — the specific asset is determined separately, during operational planning.
+Assets are not linked to reservation lines directly. Why: [ADR-006](../architecture/architecture-decisions/ADR-006-reserve-products-not-assets.md).
 
-Only reservation lines that require physical equipment receive allocations. A reservation line receives one allocation per asset. Allocations are created by operations and may change before the rental begins.
+Which reservation lines receive allocations, how many, and who makes them: [business-rules.md](business-rules.md#reservation-availability).
 
 Example, Reservation #1042 again. Operations plans the allocations from Utrecht Hub:
 
@@ -121,45 +126,33 @@ The next morning SUP #015 has a broken motor and goes into maintenance. Operatio
 | --- | --- | --- |
 | Connects a reservation line to | Participant | Asset |
 | Decided by | Customer | Operations |
-| When | At booking | After the booking cutoff, before the allocation deadline |
+| When | [At booking](business-rules.md#participants) | After the [booking cutoff](business-rules.md#booking-cutoff), before the [allocation deadline](business-rules.md#allocation-deadline) |
 | Applies to | Lines where rules per person apply | Lines that require physical equipment |
 
 ---
 
 ## Product
 
-A product represents something FlowDock offers for rental or purchase.
-
-Examples:
-
-- Electric Catamaran
-- SUP without motor
-- SUP with motor
-- Drinks
-- Food packages
+Definition: [Product](domain-language.md#product). The current products: [business-rules.md](business-rules.md#products).
 
 A product describes what is offered to customers.
 
 A product does not represent a physical item.
 
 Some products require physical assets to fulfill a reservation, while others are fulfilled directly from stock.
+
 ---
 
 ## Asset
 
-An asset represents a physical item owned by FlowDock.
-
-Examples:
-
-- Catamaran #001
-- SUP #015
+Definition and examples: [Asset](domain-language.md#asset).
 
 Assets have:
 
 - Current status
 - Location
 - Maintenance history
-- Assignment history
+- Allocation history
 
 Assets are assigned through allocations.
 
@@ -167,11 +160,7 @@ Assets are assigned through allocations.
 
 ## Hub
 
-A hub is a central operational location where assets are stored and managed.
-
-Example:
-
-Utrecht Hub
+Definition and example: [Hub](domain-language.md#hub).
 
 A hub:
 
@@ -185,7 +174,7 @@ Asset transport between a hub and a rental location is not modeled as its own co
 
 ## Rental Location
 
-A rental location is where customers start and finish their rental.
+Definition and example: [Rental Location](domain-language.md#rental-location).
 
 A rental location:
 
@@ -197,18 +186,9 @@ A rental location:
 
 ## Driver
 
-A driver performs operational tasks.
+Definition: [Driver](domain-language.md#driver). What drivers do and may not do: [business-rules.md](business-rules.md#drivers).
 
 Drivers are assigned to a rental location during operational shifts.
-
-Examples:
-
-- Transporting assets.
-- Preparing rental locations.
-- Handling incidents.
-- Supporting customers.
-
-Drivers do not modify core reservation data.
 
 ---
 
@@ -216,16 +196,9 @@ Drivers do not modify core reservation data.
 
 ## Incident
 
-An incident represents an operational event that happens during an active rental.
+Definition and examples: [Incident](domain-language.md#incident).
 
-Incidents happen on the water — they do not include reservation cancellations made before the rental begins. See Reservation's cancellation reason for that case.
-
-Examples:
-
-- Battery empty.
-- Customer requires pickup.
-- Equipment damage.
-- Late return.
+A cancellation before the rental begins is not an incident, see [Reservation](#reservation).
 
 An incident records:
 
@@ -241,14 +214,7 @@ An incident may result in a transaction.
 
 ## Transaction
 
-A transaction represents a financial event.
-
-Examples:
-
-- Initial rental payment.
-- Pickup fee.
-- Late return charge.
-- Additional drinks purchased.
+Definition and examples: [Transaction](domain-language.md#transaction).
 
 A transaction records:
 
@@ -261,40 +227,6 @@ A transaction does not replace the operational event that caused it.
 
 ---
 
----
-
 # High-level relationships
 
-```mermaid
-flowchart TB
-
-Customer --> Reservation
-
-Reservation --> ReservationLine
-
-Reservation --> Participant
-
-ReservationLine --> Product
-
-ReservationLine --> Allocation
-
-Allocation --> Asset
-
-ReservationLine --> ParticipantAssignment
-
-ParticipantAssignment --> Participant
-
-Hub --> Asset
-
-Hub --> RentalLocation
-
-RentalLocation -->|assigned during shifts| Driver
-
-Driver --> Incident
-
-Reservation --> Incident
-
-Reservation --> Transaction
-
-Incident --> Transaction
-```
+See the [domain overview diagram](../architecture/diagrams/02_domain-overview.md).

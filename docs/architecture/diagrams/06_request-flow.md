@@ -20,3 +20,4 @@ Business Logic-->>Backend API: Return result
 Backend API-->>Frontend: HTTP response
 
 Frontend-->>User: Update interface
+```

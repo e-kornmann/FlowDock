@@ -18,3 +18,4 @@ Backend --> Database[(PostgreSQL Database)]
 Backend --> ExternalServices[External Services]
 
 Backend --> Monitoring[Monitoring and Logging]
+```

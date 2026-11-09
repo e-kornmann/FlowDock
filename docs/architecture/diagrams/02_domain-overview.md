@@ -17,7 +17,7 @@ Allocation[Allocation]
 
 ParticipantAssignment[Participant Assignment]
 
-Asset[Physical Asset]
+Asset[Asset]
 
 Hub[Hub]
 
@@ -56,6 +56,9 @@ RentalLocation -->|assigned during shifts| Driver
 
 Driver -->|handles| Incident
 
-Reservation -->|results in| Transaction
+Reservation -->|can have| Incident
+
+Reservation -->|may result in| Transaction
 
 Incident -->|may result in| Transaction
+```

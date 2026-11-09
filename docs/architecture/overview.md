@@ -40,13 +40,13 @@ Technology:
 
 - Next.js (future)
 
-The customer application is separated from internal operations because it has different requirements, such as SEO and public accessibility.
+Why the customer application is separate from the operations application: [ADR-004](architecture-decisions/ADR-004-react-over-nextjs.md).
 
 ---
 
 ## Operations application
 
-An internal platform for FlowDock employees and drivers.
+An internal platform for operations and drivers.
 
 Responsibilities:
 
