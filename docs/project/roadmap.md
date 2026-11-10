@@ -57,8 +57,8 @@ Pace assumption: a few sessions per week alongside a full-time job. Adjust the d
 2. **Review and commit the restructure.** That covers `docs/about/`, this roadmap, `README.md`, `CLAUDE.md` and `.claude/` (rules, skills, settings). Suggested as two commits: `docs: restructure documentation ownership and add roadmap` and `chore(claude): add rules, skills and settings`.
 3. **Run `/update-docs`.** Fix anything still stated in two places, broken links and stale references. Known item: "Drivers cannot modify reservation data." appears twice in [business-rules.md](../domain/business-rules.md).
 4. **Decide the remaining domain questions**, or record them as deliberately deferred:
-   - Does a Driver have a home Hub? The [driver workflow](../architecture/diagrams/workflows/driver-assignment.md) starts at the Hub, while the domain model only says drivers are assigned to a rental location during shifts.
-   - Do Allocations need their own properties yet (status, time, assigned by)?
+   - Does a Driver have a home Hub? Decided: yes, see [domain-model.md](../domain/domain-model.md#driver).
+   - Do Allocations need their own properties yet? Deferred, see [Parked](#parked).
 5. **Catch up the [learning journal](learning-journal.md).** Add an entry for the 29 July to 2 August work (Reservation Line, Allocation, Participant Assignment, the review workflow) and one for this week.
 6. **Run `/architecture-review`** as the implementation-readiness check. Decide every question it raises. Phase 0 is closed when nothing blocking is left.
 7. **Prepare week 2.** List the Foundation decisions, and for each one answer: why do we need it, what are the alternatives, and what do they cost? Don't decide yet.
@@ -67,7 +67,7 @@ Pace assumption: a few sessions per week alongside a full-time job. Adjust the d
 
 - [x] Restructure committed
 - [x] `/update-docs` reports no duplicates or broken links
-- [ ] Domain questions decided or deferred in the docs
+- [x] Domain questions decided or deferred in the docs
 - [ ] Learning journal up to date
 - [ ] `/architecture-review` has no blocking findings
 - [ ] Week 2 decision list written
@@ -88,4 +88,5 @@ An item comes back only when its trigger happens, never just because it is on th
 | Consumable stock | Tracking stock for drinks and food. | Deferred, see [ADR-006](../architecture/architecture-decisions/ADR-006-reserve-products-not-assets.md) | Consumables run out at a rental location |
 | Asset transport | Transport between hub and rental location as its own concept. | Deferred, see [domain-model.md](../domain/domain-model.md#hub) | We need to track who transported which asset and when |
 | Service separation | Should the backend be split into separate services beyond the frontend and backend split of [ADR-005](../architecture/architecture-decisions/ADR-005-separate-frontend-and-backend-services.md)? | New | Part of the backend needs to scale or deploy on its own |
+| Allocation properties | Do allocations need their own properties, such as status, time or who made them? | Deferred | Phase 3 (allocation) starts |
 | Domain layers | Customer, operational and financial layers as architectural boundaries. | Exploratory, see [04_domain-layers.md](../architecture/diagrams/04_domain-layers.md) | Implementation shows where the real boundaries are |

@@ -52,6 +52,8 @@ Hub -->|owns| Asset
 
 Hub -->|supplies assets to| RentalLocation
 
+Hub -->|recruits| Driver
+
 RentalLocation -->|assigned during shifts| Driver
 
 Driver -->|handles| Incident

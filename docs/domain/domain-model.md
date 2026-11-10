@@ -188,6 +188,8 @@ A rental location:
 
 Definition: [Driver](domain-language.md#driver). What drivers do and may not do: [business-rules.md](business-rules.md#drivers).
 
+Each driver belongs to one hub: their home hub. Each hub recruits its own drivers.
+
 Drivers are assigned to a rental location during operational shifts.
 
 ---
