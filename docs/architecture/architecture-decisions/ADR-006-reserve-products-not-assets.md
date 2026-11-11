@@ -19,9 +19,9 @@ A product represents something a customer can reserve, for example:
 
 An asset represents a specific physical item owned by FlowDock, for example:
 
-* Catamaran #001
-* Catamaran #002
-* SUP #015
+* SUP board #015
+* Motor kit #005
+* Catamaran kit #001
 
 Customers are interested in reserving a product, not a specific physical asset.
 

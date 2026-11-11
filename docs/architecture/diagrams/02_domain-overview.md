@@ -19,6 +19,8 @@ ParticipantAssignment[Participant Assignment]
 
 Asset[Asset]
 
+AssetType[Asset Type]
+
 Hub[Hub]
 
 RentalLocation[Rental Location]
@@ -34,6 +36,8 @@ Transaction[Transaction]
 
 Customer -->|creates| Reservation
 
+Reservation -->|is for| RentalLocation
+
 Reservation -->|contains| ReservationLine
 
 Reservation -->|may have| Participant
@@ -43,6 +47,10 @@ ReservationLine -->|references| Product
 ReservationLine -->|may receive| Allocation
 
 Allocation -->|assigns| Asset
+
+Asset -->|is of| AssetType
+
+Product -->|requires| AssetType
 
 ReservationLine -->|may receive| ParticipantAssignment
 

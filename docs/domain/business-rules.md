@@ -28,13 +28,19 @@ Only reservation lines that require physical equipment receive allocations.
 
 Reservations are created based on product availability.
 
+A product is available at a rental location for a period when, for every [asset type](domain-language.md#asset-type) the product requires, enough assets are left: all assets of that type at the hub that supplies the rental location, minus what is already reserved for overlapping periods. A reservation counts as soon as it is made, not only once it is allocated.
+
+Availability is per period, not per day. An asset can serve several reservations on the same day, as long as their periods do not overlap.
+
+Example: SUP board #015 can go out 10:00–13:00 and again 14:00–17:00 on the same day.
+
 A reservation does not require physical assets to be allocated immediately.
 
 Physical assets are allocated later by FlowDock operations.
 
 FlowDock may suggest suitable assets, while operations can review or change the allocation before the rental begins.
 
-A reservation line that requires physical equipment needs exactly as many [allocations](domain-language.md#allocation) as its quantity, one per asset: 2 × SUP with motor means two allocations, one per SUP.
+A reservation line that requires physical equipment needs one [allocation](domain-language.md#allocation) for every asset its product requires: 2 × SUP with motor means four allocations, two SUP boards and two motor kits.
 
 ---
 
@@ -89,6 +95,18 @@ Examples:
 - Electric Catamaran
 - SUP without motor
 - SUP with motor
+
+### Asset types per product
+
+What one unit of each rental product requires:
+
+| Product | Asset types per unit |
+| --- | --- |
+| Electric Catamaran | 2 SUP boards, 2 motor kits, 1 catamaran kit |
+| SUP without motor | 1 SUP board |
+| SUP with motor | 1 SUP board, 1 motor kit |
+
+Every motor kit fits every SUP board: all boards use the same fin box. Why products are built from asset types: [ADR-009](../architecture/architecture-decisions/ADR-009-products-require-asset-types.md).
 
 ### Consumable products
 
@@ -147,6 +165,12 @@ Exactly 2 participants per catamaran.
 
 A catamaran cannot be rented by one person alone. 2 × Electric Catamaran requires exactly 4 participant assignments.
 
+## SUP without motor and SUP with motor
+
+Exactly 1 participant per SUP.
+
+Reason: age restrictions only work when every person using a SUP is assigned to its reservation line. 2 × SUP with motor requires exactly 2 participant assignments.
+
 ---
 
 # Weather conditions
@@ -202,6 +226,7 @@ Drivers are responsible for operational activities.
 Examples:
 
 - Transporting assets
+- Assembling catamarans at the rental location
 - Preparing and managing rental locations
 - Handling incidents
 - Supporting customers

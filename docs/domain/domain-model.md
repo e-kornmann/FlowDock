@@ -51,6 +51,8 @@ Definition: [Reservation](domain-language.md#reservation).
 A reservation:
 
 - Belongs to one customer.
+- Is for one rental location.
+- Has one period: a start and end time.
 - Contains one or more reservation lines.
 - May have multiple participants.
 - May result in one or more financial transactions.
@@ -114,11 +116,11 @@ Example, Reservation #1042 again. Operations plans the allocations from Utrecht 
 
 | Reservation line | Allocations |
 | --- | --- |
-| 1 × Electric Catamaran | Catamaran #003 |
-| 2 × SUP with motor | SUP #015, SUP #016 |
+| 1 × Electric Catamaran | SUP board #003, SUP board #004, Motor kit #001, Motor kit #002, Catamaran kit #001 |
+| 2 × SUP with motor | SUP board #015, SUP board #016, Motor kit #005, Motor kit #006 |
 | 4 × Aperol | none (consumable) |
 
-The next morning SUP #015 has a broken motor and goes into maintenance. Operations replaces that allocation with SUP #021. The reservation itself does not change: Elton booked 2 × SUP with motor and still gets exactly that.
+The next morning Motor kit #005 is broken and goes into maintenance. Operations replaces that one allocation with Motor kit #009. The board stays, and the reservation itself does not change: Elton booked 2 × SUP with motor and still gets exactly that.
 
 ### Participant assignment vs allocation
 
@@ -139,7 +141,7 @@ A product describes what is offered to customers.
 
 A product does not represent a physical item.
 
-Some products require physical assets to fulfill a reservation, while others are fulfilled directly from stock.
+A product requires one or more [asset types](#asset-type) to fulfil a reservation, or none when it is fulfilled directly from stock. Which asset types: [business-rules.md](business-rules.md#asset-types-per-product).
 
 ---
 
@@ -154,7 +156,22 @@ Assets have:
 - Maintenance history
 - Allocation history
 
+Each asset is of exactly one asset type.
+
 Assets are assigned through allocations.
+
+---
+
+## Asset Type
+
+Definition: [Asset Type](domain-language.md#asset-type). Why: [ADR-009](../architecture/architecture-decisions/ADR-009-products-require-asset-types.md).
+
+An asset type:
+
+- Groups assets that are interchangeable for operations.
+- Is required by one or more products.
+
+Availability is counted per asset type, see [business-rules.md](business-rules.md#reservation-availability).
 
 ---
 

@@ -86,8 +86,17 @@ A physical item owned by FlowDock.
 
 Examples:
 
-- Catamaran #001
-- SUP #015
+- SUP board #015
+- Motor kit #005
+- Catamaran kit #001
+
+---
+
+## Asset Type
+
+A kind of asset, such as SUP board, motor kit or catamaran kit. A product requires one or more asset types.
+
+Which asset types each product requires: [business-rules.md](business-rules.md#products). Why: [ADR-009](../architecture/architecture-decisions/ADR-009-products-require-asset-types.md).
 
 ---
 
