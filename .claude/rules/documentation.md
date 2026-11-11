@@ -7,7 +7,7 @@ Every piece of information has exactly one home. Other places link to it and nev
 | One-line description, documentation index, AI usage disclosure | `README.md` |
 | Instructions for Claude | `CLAUDE.md`, `.claude/rules/`, `.claude/skills/` |
 | Who Elton is: background, direction, how he learns | `docs/about/me.md` |
-| Why FlowDock exists, learning goals, ground rules, Definition of Done | `docs/about/flowdock.md` |
+| Why FlowDock exists, learning goals, showcase, ground rules, Definition of Done | `docs/about/flowdock.md` |
 | The business FlowDock simulates: purpose, future direction | `docs/project/vision.md` |
 | Phases, goals for the coming weeks, this week's goal, open and parked questions | `docs/project/roadmap.md` |
 | What was learned and decided, by date | `docs/project/learning-journal.md` |

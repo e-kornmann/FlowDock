@@ -15,8 +15,9 @@ Each phase introduces new technology only when FlowDock needs it. Why the projec
 | 2. Core domain | Customers, Reservations, Reservation Lines, Products, Participants. No login, no payments, no AI. | Planned |
 | 3. Operations | Hubs, Rental Locations, Assets and Allocation, Drivers, Incidents, Transactions. | Planned |
 | 4. Platform | Every service in Docker Compose, reverse proxy, health checks, logging, CI/CD with GitHub Actions, deployments. | Planned |
-| 5. Cloud | Kubernetes, Helm, secrets, ingress, autoscaling. | Planned |
-| 6. Intelligence | Weather data, demand forecasting, smarter logistics, an LLM assistant for staff. | Planned |
+| 5. Customer app | The public reservation app ([ADR-004](../architecture/architecture-decisions/ADR-004-react-over-nextjs.md)): find a rental location, check availability, book and pay. Payments come in here. Design quality is the bar, see the design track. | Planned |
+| 6. Cloud | Kubernetes, Helm, secrets, ingress, autoscaling. | Planned |
+| 7. Intelligence | Weather data, demand forecasting, smarter logistics, an LLM assistant for staff. | Planned |
 
 ### AI workflow track
 
@@ -30,6 +31,18 @@ This track runs alongside the phases: after each phase, the Claude setup improve
 | 3 | A reviewer agent that critiques code and architecture but writes no code |
 | 4 | A platform agent for Docker, CI and deployments |
 
+### Design track
+
+The customer app is my [showcase](../about/flowdock.md#showcase). Its design starts long before its code, so it has time to become really good.
+
+| With phase | Design |
+| --- | --- |
+| 1 | Brand basics: logo, colours, typography. The operations app uses them too. |
+| 2 | Customer journey: how a customer finds a rental location, picks products, adds participants and books. First wireframes. |
+| 3 | Design system and a clickable high-fidelity prototype. Test it with a few real people. |
+| 4 | Every screen and state (loading, empty, error, sold out), mobile first. Ready to build. |
+| 5 | Build it, then polish: accessibility, performance, details. |
+
 ---
 
 ## Next six weeks
@@ -39,7 +52,7 @@ Pace assumption: a few sessions per week alongside a full-time job. Adjust the d
 | Week | Dates | Goal |
 | --- | --- | --- |
 | 1 | 9–15 Nov | **Close Phase 0.** The docs are restructured and consistent, open domain questions are decided or explicitly deferred, and an implementation-readiness review has passed. |
-| 2 | 16–22 Nov | **Foundation decisions.** ADRs for repository structure (monorepo or not, package manager), backend framework and data access. |
+| 2 | 16–22 Nov | **Foundation decisions.** ADRs for repository structure (monorepo or not, package manager), backend framework and data access, including how times are stored. |
 | 3 | 23–29 Nov | **Docker basics through FlowDock.** PostgreSQL running in Docker Compose for local development. Learn images, containers, volumes and networks. |
 | 4 | 30 Nov–6 Dec | **Scaffold.** Backend API with a health endpoint, Vite operations app, shared TypeScript and lint setup. First path-scoped Claude rules. |
 | 5 | 7–13 Dec | **First Phase 2 slice.** Products, plus Rental Locations as reference data: schema, migration, read endpoint, tests. |
@@ -89,5 +102,10 @@ An item comes back only when its trigger happens, never just because it is on th
 | Asset transport | Transport between hub and rental location as its own concept. | Deferred, see [domain-model.md](../domain/domain-model.md#hub) | We need to track who transported which asset and when |
 | Service separation | Should the backend be split into separate services beyond the frontend and backend split of [ADR-005](../architecture/architecture-decisions/ADR-005-separate-frontend-and-backend-services.md)? | New | Part of the backend needs to scale or deploy on its own |
 | eFoil | Add an eFoil (electric hydrofoil board) as a product? It needs its own minimum age, maybe instruction before the first ride, and its battery may not last the minimum rental duration. | New | Products become reference data in code (week 5) |
+| Turnaround buffer | How long is the [turnaround buffer](../domain/business-rules.md#reservation-availability) per asset type? Charging a motor kit may take much longer than checking a board. | New | Availability is implemented in code |
+| Reservation status | When is a reservation "confirmed": when it is made, or after payment? | New | Reservations are built in code (Phase 2) |
+| Asset status | The [status list](../domain/business-rules.md#asset-management) mixes physical state, location and planning, while an asset can be allocated for Saturday and in use on Friday. | New | Phase 3 (allocation) starts |
+| Contact details | Which contact details are stored for the customer, and for the participant who provides them when the customer stays ashore? | New | Customers and Participants are built in code (Phase 2) |
+| Review leftovers | Small doc fixes from the 11 November architecture review: capacity as a consequence in ADR-008, the availability check through business logic in diagram 03, an Asset → Incident edge in diagram 02, and a Customer definition that covers reservations made by operations. | New | Phase 2 starts |
 | Allocation properties | Do allocations need their own properties, such as status, time or who made them? | Deferred | Phase 3 (allocation) starts |
 | Domain layers | Customer, operational and financial layers as architectural boundaries. | Exploratory, see [04_domain-layers.md](../architecture/diagrams/04_domain-layers.md) | Implementation shows where the real boundaries are |

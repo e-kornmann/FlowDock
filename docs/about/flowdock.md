@@ -34,6 +34,12 @@ When each of these comes in is in the [roadmap](../project/roadmap.md).
 
 ---
 
+## Showcase
+
+I started as a graphic designer ([me.md](me.md)). The customer app is where that background and my engineering come together, and it is meant to show the world both. Design quality is the bar for that app, not an afterthought. How it gets that attention: the [design track](../project/roadmap.md#design-track).
+
+---
+
 ## Ground rules
 
 1. **We build a company, not a tutorial.** Not "today we build a login", but "who actually needs an account?" The business question comes first, the feature follows.

@@ -32,7 +32,9 @@ A product is available at a rental location for a period when, for every [asset 
 
 Availability is per period, not per day. An asset can serve several reservations on the same day, as long as their periods do not overlap.
 
-Example: SUP board #015 can go out 10:00–13:00 and again 14:00–17:00 on the same day.
+Between two reservations, an asset needs a turnaround buffer before it can go out again, for example to charge a motor kit or check a board. The length of the buffer per asset type is not decided yet, see [roadmap.md](../project/roadmap.md#parked).
+
+Example: SUP board #015 can go out 10:00–13:00 and again 14:00–17:00 on the same day, if its buffer fits between 13:00 and 14:00.
 
 A reservation does not require physical assets to be allocated immediately.
 
@@ -46,7 +48,7 @@ A reservation line that requires physical equipment needs one [allocation](domai
 
 ## Booking and allocation deadlines
 
-All times are local time at the rental location.
+All times are local time at the hub. A hub and the rental locations it supplies are always in the same time zone.
 
 ### Booking cutoff
 
